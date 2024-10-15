@@ -1,18 +1,20 @@
+import { useState } from "react";
 
 
 function ListGroup() {
     let items=['New York','San Francisco','Tokyo','London','Paris'];
-   
-    
+    const [selectedIndex , setSelectedIndex] = useState(-1);
+    // const [name,setName] = useState('')
+
   return (
     <>
         <h1>List</h1>
         {items.length === 0 ? <p>No items found</p> : null}
         <ul className="list-group">
-            {items.map((item) => (
-                <li className="list-group-item"
+            {items.map((item,index) => (
+                <li className={selectedIndex === index ? 'list-group-item active ': 'list-group-item'}
                 key={item} 
-                onClick={()=> console.log('clicked')}> 
+                onClick={() => { setSelectedIndex(index);}}> 
                 {item}</li>
                 ))}
         </ul>
